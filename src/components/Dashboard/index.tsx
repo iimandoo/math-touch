@@ -1,18 +1,23 @@
 "use client";
-
+import React, { useRef, useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import styles from "./page.module.css";
 import TextField from "@mui/material/TextField";
-import { useState } from "react";
+
+import styles from "./page.module.css";
+import TouchCanvas from "../TouchCanvas";
 
 type FormValues = {
   formMent: string;
 };
 
+interface Point {
+  x: number;
+  y: number;
+}
 export default function Dashboard() {
   const {
     register,
@@ -49,9 +54,13 @@ export default function Dashboard() {
             </form>
           </Grid>
           <Grid item xs={6}>
-            {ment?.map((text, key) => {
-              return <p key={key}>{text}</p>;
-            })}
+            <div>
+              {ment?.map((text, key) => {
+                return <p key={key}>{text}</p>;
+              })}
+            </div>
+
+            <TouchCanvas />
           </Grid>
         </Grid>
       </Container>
